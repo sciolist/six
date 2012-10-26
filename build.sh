@@ -1,4 +1,5 @@
+#!/bin/sh
 set -e
-sh build-compiler.sh
-sh build-system.sh
+./build-compiler.sh
+./build-system.sh
 
