@@ -10,7 +10,7 @@ mkdir -p $OUT
 sh scripts/compiler/binutils.sh
 sh scripts/compiler/gcc.sh
 
-PATH=$OUT/bin:$PATH
+export PATH=$OUT/bin:$PATH
 export CC="$A-unknown-linux-musl-gcc"
 export CFLAGS="-Os"
 export LDFLAGS="-s"
