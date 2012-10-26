@@ -1,13 +1,10 @@
 #!/bin/sh -e
 V=3.6.1
 SRC=$( cd "$( dirname "$0" )" && pwd )
-mkdir -p $WRK && cd $WRK
+cd $WRK
 
-if [ ! -d linux-$V ]; then
-  test -f linux-$V.tar.bz2 || wget http://www.kernel.org/pub/linux/kernel/v3.0/linux-$V.tar.bz2
-  tar -xjf linux-$V.tar.bz2
-  #patch -N -d linux-$V -p1 < $SRC/patches/linux.patch 
-fi
+test  -f $DL/linux-$V.tar.bz2 || wget http://www.kernel.org/pub/linux/kernel/v3.0/linux-$V.tar.bz2 -O $DL/linux-$V.tar.bz2
+tar -xjf $DL/linux-$V.tar.bz2
 
 export CROSS_COMPILE="$A-unknown-linux-musl-"
 ARCH=$A

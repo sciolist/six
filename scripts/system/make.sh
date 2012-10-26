@@ -1,15 +1,13 @@
 #!/bin/sh -e
 V=3.82
 SRC=$( cd "$( dirname "$0" )" && pwd )
-mkdir -p $WRK && cd $WRK
+cd $WRK
 
-if [ ! -d make-$V ]; then
-  test -f make-$V.tar.bz2 || wget http://ftp.gnu.org/gnu/make/make-$V.tar.bz2
-  tar -xjf make-$V.tar.bz2
-  patch -N -d make-$V -p1 < $SRC/patches/make.patch 
-fi
+test  -f $DL/make-$V.tar.bz2 || wget http://ftp.gnu.org/gnu/make/make-$V.tar.bz2 -O $DL/make-$V.tar.bz2
+tar -xjf $DL/make-$V.tar.bz2
 
 cd make-$V
+patch -N -p1 < $SRC/patches/make.patch 
 config_sub=config/config.sub
 ./configure --prefix=/ --host=$A-unknown-linux-musl \
             --target=$A-unknown-linux-musl --disable-nls

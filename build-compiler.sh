@@ -1,16 +1,17 @@
-#!/bin/sh
-set -e
+#!/bin/sh -e
 export A=$(uname -m)
 export ROOT=$(pwd)
-export WRK=$ROOT/_work/_compiler
-export OUT=$ROOT/_work/compiler
-PATH=$ROOT/_work/compiler/bin:$PATH
-mkdir -p $OUT
+export DL=$ROOT/_work/download
+export WRK=$ROOT/_work/compiler
+export OUT=$ROOT/out/compiler
+export PATH=$ROOT/out/compiler/bin:$PATH
+rm -rf $WRK
+mkdir -p $OUT && mkdir -p $WRK && mkdir -p $DL
 
 ./scripts/compiler/binutils.sh
+exit 321
 ./scripts/compiler/gcc.sh
 
-export PATH=$OUT/bin:$PATH
 export CC="$A-unknown-linux-musl-gcc"
 export CFLAGS="-Os"
 export LDFLAGS="-s"

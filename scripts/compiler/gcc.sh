@@ -1,15 +1,13 @@
 #!/bin/sh -e
 V=4.2.1
 SRC=$( cd "$( dirname "$0" )" && pwd )
-mkdir -p $WRK && cd $WRK
+cd $WRK
 
-if [ ! -d gcc-$V ]; then
-  test -f gcc-core-$V.tar.bz2 || wget http://ftp.gnu.org/gnu/gcc/gcc-$V/gcc-core-$V.tar.bz2
-  tar -xjf gcc-core-$V.tar.bz2
-  patch -N -d gcc-$V -p1 < $SRC/patches/gcc.patch 
-fi
+test  -f $DL/gcc-core-$V.tar.bz2 || wget http://ftp.gnu.org/gnu/gcc/gcc-$V/gcc-core-$V.tar.bz2 -O $DL/gcc-core-$V.tar.bz2
+tar -xjf $DL/gcc-core-$V.tar.bz2
 
 cd gcc-$V
+patch -N -p1 < $SRC/patches/gcc.patch 
 rm -rf ./gcc-build
 mkdir -p gcc-build
 cd gcc-build

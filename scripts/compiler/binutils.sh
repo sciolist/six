@@ -1,15 +1,13 @@
 #!/bin/sh -e
 V=397a64b3
 SRC=$( cd "$( dirname "$0" )" && pwd )
-mkdir -p $WRK && cd $WRK
+cd $WRK
 
-if [ ! -d binutils-$V ]; then
-  test -f binutils-$V.tar.bz2 || wget http://landley.net/aboriginal/mirror/binutils-$V.tar.bz2
-  tar -xjf binutils-$V.tar.bz2
-  patch -N -d binutils-$V -p1 < $SRC/patches/binutils.patch 
-fi
+test  -f $DL/binutils-$V.tar.bz2 || wget http://landley.net/aboriginal/mirror/binutils-$V.tar.bz2 -O $DL/binutils-$V.tar.bz2
+tar -xjf $DL/binutils-$V.tar.bz2
 
 cd binutils-$V
+patch -N -p1 < $SRC/patches/binutils.patch 
 ./configure --target=$A-unknown-linux-musl --prefix="$OUT" \
             --disable-install-libbfd --disable-werror
 make
