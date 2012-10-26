@@ -9,7 +9,6 @@ rm -rf $WRK
 mkdir -p $OUT && mkdir -p $WRK && mkdir -p $DL
 
 ./scripts/compiler/binutils.sh
-exit 321
 ./scripts/compiler/gcc.sh
 
 export CC="$A-unknown-linux-musl-gcc"

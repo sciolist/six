@@ -1,4 +1,5 @@
 #!/bin/sh -e
+SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 
 for i in etc proc dev sys root mnt tmp;do
@@ -11,7 +12,6 @@ if [ -d "$OUT/sbin" ];then
   ln -s bin "$OUT/sbin"
 fi
 
-ln -sf / "$OUT/usr"
-cp -r $SRC/fs $OUT
-chmod +x "$out"/etc/rc
+test "$OUT/usr" || ln -sf / "$OUT/usr"
+cp -r $SRC/fs/* $OUT
 
