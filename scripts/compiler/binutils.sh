@@ -1,15 +1,13 @@
 V=397a64b3
 set -e
 SRC=$( cd "$( dirname "$0" )" && pwd )
-mkdir -p $WORKING_DIR && cd $WORKING_DIR
+mkdir -p $WRK && cd $WRK
 
 if [ ! -d binutils-$V ]; then
-  if [ ! -f binutils-$V.tar.bz2 ]; then
-    wget http://landley.net/aboriginal/mirror/binutils-$V.tar.bz2
-  fi
-  tar -xvjf binutils-$V.tar.bz2
+  test -f binutils-$V.tar.bz2 || wget http://landley.net/aboriginal/mirror/binutils-$V.tar.bz2
+  tar -xjf binutils-$V.tar.bz2
 fi
-patch -t -d binutils-$V -p1 < $SRC/patches/binutils.patch 
+patch -N -d binutils-$V -p1 < $SRC/patches/binutils.patch || true
 
 cd binutils-$V
 ./configure --target=$A-unknown-linux-musl --prefix="$OUT" \

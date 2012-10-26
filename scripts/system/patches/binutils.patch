@@ -1,27 +1,32 @@
-diff a/config.sub b/config.sub
+diff --git a/config.sub b/config.sub
+index c060f44..b99c1c0 100755
 --- a/config.sub
 +++ b/config.sub
-@@ -120,7 +120,7 @@
+@@ -120,8 +120,8 @@ esac
  # Here we must recognize all the valid KERNEL-OS combinations.
  maybe_os=`echo $1 | sed 's/^\(.*\)-\([^-]*-[^-]*\)$/\2/'`
  case $maybe_os in
 -  nto-qnx* | linux-gnu* | linux-dietlibc | linux-newlib* | linux-uclibc* | \
-+  nto-qnx* | linux-gnu* | linux-dietlibc | linux-newlib* | linux-uclibc* | linux-musl* | \
-   uclinux-uclibc* | uclinux-gnu* | kfreebsd*-gnu* | knetbsd*-gnu* | netbsd*-gnu* | \
+-  uclinux-uclibc* | uclinux-gnu* | kfreebsd*-gnu* | knetbsd*-gnu* | netbsd*-gnu* | \
++  nto-qnx* | linux-gnu* | linux-musl* | linux-dietlibc | linux-newlib* | linux-uclibc* | \
++  uclinux-uclibc* | uclinux-gnu* | linux-musl* | kfreebsd*-gnu* | knetbsd*-gnu* | netbsd*-gnu* | \
    storm-chaos* | os2-emx* | rtmk-nova*)
      os=-$maybe_os
-@@ -1218,7 +1218,7 @@
+     basic_machine=`echo $1 | sed 's/^\(.*\)-\([^-]*-[^-]*\)$/\1/'`
+@@ -1218,7 +1218,7 @@ case $os in
  	      | -udi* | -eabi* | -lites* | -ieee* | -go32* | -aux* \
  	      | -chorusos* | -chorusrdb* \
  	      | -cygwin* | -pe* | -psos* | -moss* | -proelf* | -rtems* \
 -	      | -mingw32* | -linux-gnu* | -linux-newlib* | -linux-uclibc* \
-+	      | -mingw32* | -linux-gnu* | -linux-newlib* | -linux-uclibc* | linux-musl* \
++	      | -mingw32* | -linux-gnu* | linux-musl* | -linux-newlib* | -linux-uclibc* \
  	      | -uxpv* | -beos* | -mpeix* | -udk* \
  	      | -interix* | -uwin* | -mks* | -rhapsody* | -darwin* | -opened* \
  	      | -openstep* | -oskit* | -conix* | -pw32* | -nonstopux* \
+diff --git a/missing b/missing
+index 894e786..b5d6748 100755
 --- a/missing
 +++ b/missing
-@@ -299,7 +299,7 @@
+@@ -299,7 +299,7 @@ WARNING: \`$1' is $msg.  You should only need it if
      fi
      # If the file does not exist, the user really needs makeinfo;
      # let's fail without touching anything.
@@ -29,4 +34,4 @@ diff a/config.sub b/config.sub
 +    test -f $file || exit 0
      touch $file
      ;;
-
+ 

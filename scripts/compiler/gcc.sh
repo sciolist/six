@@ -1,16 +1,13 @@
 V=4.2.1
-
 set -e
 SRC=$( cd "$( dirname "$0" )" && pwd )
-mkdir -p $WORKING_DIR && cd $WORKING_DIR
+mkdir -p $WRK && cd $WRK
 
 if [ ! -d gcc-$V ]; then
-  if [ ! -f gcc-core-$V.tar.bz2 ]; then
-    wget http://ftp.gnu.org/gnu/gcc/gcc-$V/gcc-core-$V.tar.bz2
-  fi
-  tar -xvjf gcc-core-$V.tar.bz2
+  test -f gcc-core-$V.tar.bz2 || wget http://ftp.gnu.org/gnu/gcc/gcc-$V/gcc-core-$V.tar.bz2
+  tar -xjf gcc-core-$V.tar.bz2
 fi
-patch -t -d gcc-$V -p1 < $SRC/patches/gcc.patch 
+patch -N -d gcc-$V -p1 < $SRC/patches/gcc.patch || true
 
 cd gcc-$V
 rm -rf ./gcc-build
@@ -23,4 +20,11 @@ cd gcc-build
 
 make all-gcc
 make install-gcc
+
+cd ..
+rm -rf ./gcc-build
+TARGET=$(dirname $($A-unknown-linux-musl-gcc -print-libgcc-file-name))
+echo " >> >> $TARGET"
+mkdir -p $TARGET
+cat gcc/limitx.h gcc/glimits.h gcc/limity.h > "$TARGET"/include/limits.h
 
