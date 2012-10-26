@@ -1,0 +1,19 @@
+url=http://busybox.net/downloads/$name-$version.tar.bz2
+
+patches=busybox-musl-fixes.patch
+
+export CROSS_COMPILE="$A-unknown-linux-musl-"
+
+config() {
+	make allnoconfig KCONFIG_ALLCONFIG="$top"/busybox.config
+}
+
+install() {
+	make busybox.links
+	mkdir -p "$out"/bin
+	cp busybox "$out"/bin/busybox
+
+	cat busybox.links | while read line;do
+		ln -sf busybox "$out"/bin/"$(basename $line)"
+	done
+}

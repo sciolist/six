@@ -12,8 +12,9 @@ if [ ! -d musl-$V ]; then
 fi
 
 cd musl-$V
-./configure --host=$A-unknown-linux-musl --prefix="$OUT"/$A-unknown-linux-musl/ \
-            --syslibdir="$OUT"/lib --disable-gcc-wrapper --disable-shared
+./configure --prefix=/ --host=$A-unknown-linux-musl \
+            --target=$A-unknown-linux-musl --disable-gcc-wrapper
+        
 make
-make install
+make DESTDIR="$OUT" install
 
