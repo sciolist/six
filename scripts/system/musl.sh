@@ -1,5 +1,5 @@
+#!/bin/sh -e
 V=0.9.6
-set -e
 SRC=$( cd "$( dirname "$0" )" && pwd )
 mkdir -p $WRK && cd $WRK
 

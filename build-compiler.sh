@@ -7,14 +7,14 @@ export OUT=$ROOT/_work/compiler
 PATH=$ROOT/_work/compiler/bin:$PATH
 mkdir -p $OUT
 
-sh scripts/compiler/binutils.sh
-sh scripts/compiler/gcc.sh
+./scripts/compiler/binutils.sh
+./scripts/compiler/gcc.sh
 
 export PATH=$OUT/bin:$PATH
 export CC="$A-unknown-linux-musl-gcc"
 export CFLAGS="-Os"
 export LDFLAGS="-s"
 
-sh scripts/compiler/linux-headers.sh
-sh scripts/compiler/musl.sh
+./scripts/compiler/linux-headers.sh
+./scripts/compiler/musl.sh
 
