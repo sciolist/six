@@ -11,10 +11,11 @@ LDFLAGS="$LDFLAGS -Wl,--gc-sections"
 
 cd binutils-$V
 patch -N -p1 < $SRC/patches/binutils.patch 
-./configure --disable-werror --disable-shared --disable-nls --disable-install-libbfd \
-            --prefix=/ --host=$A-unknown-linux-musl \
-            --target=$A-unknown-linux-musl
+./configure --prefix=/ --host=$A-unknown-linux-musl \
+  --target=$A-unknown-linux-musl \
+  --disable-werror --disable-shared --disable-nls --disable-install-libbfd
 
 make
 make install-gas install-ld install-binutils DESTDIR="$OUT"
+rm -rf "$OUT/$A-unknown-linux-musl/"
 
