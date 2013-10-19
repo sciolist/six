@@ -1,5 +1,5 @@
 #!/bin/sh -e
-V=3.82
+V=$MAKE_VERSION
 SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 

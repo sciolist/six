@@ -1,5 +1,5 @@
 #!/bin/sh -e
-V=1.20.2
+V=$BUSYBOX_VERSION
 SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 

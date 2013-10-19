@@ -1,5 +1,5 @@
 #!/bin/sh -e
-V=2.32.2
+V=$BINUTILS_VERSION
 URL="http://ftp.gnu.org/gnu/binutils/binutils-$V.tar.gz"
 SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK

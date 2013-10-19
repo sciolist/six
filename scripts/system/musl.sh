@@ -1,5 +1,5 @@
 #!/bin/sh -e
-V=0.9.6
+V=$MUSL_VERSION
 SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 

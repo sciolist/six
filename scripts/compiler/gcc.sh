@@ -1,5 +1,5 @@
 #!/bin/sh -e
-V=4.2.1
+V=$GCC_VERSION
 SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 

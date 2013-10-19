@@ -1,5 +1,5 @@
 #!/bin/sh -e
-V=3.6.1
+V=$LINUX_VERSION
 SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 

@@ -1,4 +1,5 @@
 #!/bin/sh -e
+source versions.sh
 export A=$(uname -m)
 export ROOT=$(pwd)
 export DL=$ROOT/_work/download
