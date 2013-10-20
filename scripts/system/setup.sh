@@ -1,5 +1,6 @@
-#!/bin/sh -e
-SRC=$( cd "$( dirname "$0" )" && pwd )
+#!/bin/bash -e
+source $(cd $( dirname "$0" ) && pwd)/../shared.sh
+is_done && exit 0
 cd $WRK
 
 for i in etc proc dev sys root mnt tmp;do
@@ -14,4 +15,5 @@ fi
 
 test "$OUT/usr" || ln -sf / "$OUT/usr"
 cp -r $SRC/fs/* $OUT
+mark_done
 

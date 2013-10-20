@@ -1,6 +1,7 @@
-#!/bin/sh -e
+#!/bin/bash -e
+source $(cd $( dirname "$0" ) && pwd)/../shared.sh
+is_done && exit 0
 V=$MUSL_VERSION
-SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 
 test  -f $DL/musl-$V.tar.bz2 || wget http://www.etalabs.net/musl/releases/musl-$V.tar.gz -O $DL/musl-$V.tar.bz2
@@ -12,4 +13,5 @@ cd musl-$V
         
 make
 make DESTDIR="$OUT" install
+mark_done
 

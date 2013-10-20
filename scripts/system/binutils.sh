@@ -1,7 +1,8 @@
-#!/bin/sh -e
+#!/bin/bash -e
+source $(cd $( dirname "$0" ) && pwd)/../shared.sh
+is_done && exit 0
 V=$BINUTILS_VERSION
 URL="http://ftp.gnu.org/gnu/binutils/binutils-$V.tar.gz"
-SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 
 test -f $DL/binutils-$V.tar.gz || wget $URL -O $DL/binutils-$V.tar.gz
@@ -19,4 +20,4 @@ sed -e 's/uclibc/musl/g' config.sub > config.sub.tmp && mv config.sub.tmp config
 make
 make install-gas install-ld install-binutils DESTDIR="$OUT"
 rm -rf "$OUT/$A-unknown-linux-musl/"
-
+mark_done

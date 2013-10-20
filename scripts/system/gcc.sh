@@ -1,6 +1,7 @@
-#!/bin/sh -e
+#!/bin/bash -e
+source $(cd $( dirname "$0" ) && pwd)/../shared.sh
+is_done && exit 0
 V=$GCC_VERSION
-SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 
 test  -f $DL/gcc-core-$V.tar.bz2 || wget http://ftp.gnu.org/gnu/gcc/gcc-$V/gcc-core-$V.tar.bz2 -O $DL/gcc-core-$V.tar.bz2
@@ -20,4 +21,5 @@ done
             --disable-bootstrap --disable-libgomp --disable-tls --with-newlib
 make all-gcc
 make install-gcc DESTDIR="$OUT"
+mark_done
 

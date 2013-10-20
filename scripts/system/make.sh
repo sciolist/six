@@ -1,6 +1,7 @@
-#!/bin/sh -e
+#!/bin/bash -e
+source $(cd $( dirname "$0" ) && pwd)/../shared.sh
+is_done && exit 0
 V=$MAKE_VERSION
-SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 
 test  -f $DL/make-$V.tar.bz2 || wget http://ftp.gnu.org/gnu/make/make-$V.tar.bz2 -O $DL/make-$V.tar.bz2
@@ -14,4 +15,5 @@ config_sub=config/config.sub
         
 make
 make DESTDIR="$OUT" install
+mark_done
 

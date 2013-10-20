@@ -1,6 +1,7 @@
-#!/bin/sh -e
+#!/bin/bash -e
+source $(cd $( dirname "$0" ) && pwd)/../shared.sh
+is_done && exit 0
 V=$BUSYBOX_VERSION
-SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 
 test  -f $DL/busybox-$V.tar.bz2 || wget http://busybox.net/downloads/busybox-$V.tar.bz2 -O $DL/busybox-$V.tar.bz2
@@ -18,4 +19,5 @@ cp busybox "$OUT"/bin/busybox
 cat busybox.links | while read line;do
   ln -sf busybox "$OUT"/bin/"$(basename $line)"
 done
+mark_done
 

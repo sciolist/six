@@ -1,6 +1,7 @@
-#!/bin/sh -e
+#!/bin/bash -e
+source $(cd $( dirname "$0" ) && pwd)/../shared.sh
+is_done && exit 0
 V=$GCC_VERSION
-SRC=$( cd "$( dirname "$0" )" && pwd )
 cd $WRK
 
 test  -f $DL/gcc-core-$V.tar.bz2 || wget http://ftp.gnu.org/gnu/gcc/gcc-$V/gcc-core-$V.tar.bz2 -O $DL/gcc-core-$V.tar.bz2
@@ -25,4 +26,5 @@ TARGET=$(dirname $($A-unknown-linux-musl-gcc -print-libgcc-file-name))
 echo " >> >> $TARGET"
 mkdir -p $TARGET
 cat gcc/limitx.h gcc/glimits.h gcc/limity.h > "$TARGET"/include/limits.h
+mark_done
 

@@ -1,17 +1,4 @@
-#!/bin/sh -e
-source versions.sh
-export A=$(uname -m)
-export ROOT=$(pwd)
-export DL=$ROOT/_work/download
-export WRK=$ROOT/_work/system
-export OUT=$ROOT/out/system
-export PATH=$ROOT/out/compiler/bin:$PATH
-export CC="$A-unknown-linux-musl-gcc"
-export CFLAGS="-Os"
-export LDFLAGS="-s"
-rm -rf $WRK
-mkdir -p $OUT && mkdir -p $WRK && mkdir -p $DL
-
+#!/bin/bash -e
 ./scripts/system/musl.sh
 ./scripts/system/binutils.sh
 ./scripts/system/gcc.sh
