@@ -13,9 +13,10 @@ source $ROOT/versions.sh
 
 function is_done { test -f $WRK/$NAME.done; }
 function mark_done { touch $WRK/$NAME.done; }
-echo "## BUILDING $MODE - $NAME" 
+echo -ne "\033]0;$MODE - $NAME\007"
 
 if [ "$MODE" = "compiler" ]; then
+  echo
 else
   export CC="$A-unknown-linux-musl-gcc"
   export CFLAGS="-Os"

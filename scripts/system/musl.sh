@@ -4,7 +4,7 @@ is_done && exit 0
 V=$MUSL_VERSION
 cd $WRK
 
-test  -f $DL/musl-$V.tar.bz2 || wget http://www.etalabs.net/musl/releases/musl-$V.tar.gz -O $DL/musl-$V.tar.bz2
+test  -f $DL/musl-$V.tar.gz || wget http://www.etalabs.net/musl/releases/musl-$V.tar.gz -O $DL/musl-$V.tar.gz
 tar -xzf $DL/musl-$V.tar.gz
 
 cd musl-$V
